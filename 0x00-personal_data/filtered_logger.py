@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """filtered_logger"""
 import logging
+import os
 import re
 from typing import List
+
+import mysql.connector
 
 
 def filter_datum(fields: List[str], redaction: str, message: str,
