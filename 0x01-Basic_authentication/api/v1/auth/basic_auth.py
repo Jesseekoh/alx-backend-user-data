@@ -8,7 +8,8 @@ from .auth import Auth
 class BasicAuth(Auth):
     """BasicAuth class definition"""
 
-    def extract_base64_authorization_header(self, authorization_header: str) -> str:
+    def extract_base64_authorization_header(self,
+                                            authorization_header: str) -> str:
         """Extracts the Base64 part of the Authorization header
         for a Basic Authentication.
         """
