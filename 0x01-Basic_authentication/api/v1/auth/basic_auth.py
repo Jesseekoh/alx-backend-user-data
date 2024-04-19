@@ -3,6 +3,7 @@
 import base64
 import binascii
 import re
+from typing import Tuple, TypeVar
 
 from .auth import Auth
 
