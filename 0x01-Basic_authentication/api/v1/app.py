@@ -23,16 +23,14 @@ if getenv("AUTH_TYPE") == 'auth':
 @app.before_request
 def before_request():
     """handler before_request"""
-    authorized_list = ['/api/v1/status/',
-                       '/api/v1/unauthorized', '/api/v1/forbidden']
+    excluded_paths = ['/api/v1/status/',
+                      '/api/v1/unauthorized', '/api/v1/forbidden']
 
-    if auth is None or auth.require_auth(request.path, authorized_list):
-        return
-    if auth.authorization_header(request) is None:
-        abort(401)
-
-    if auth.current_user(request) is None:
-        abort(403)
+    if auth and auth.require_auth(request.path, excluded_paths):
+        if auth.authorization_header(request) is None:
+            abort(401)
+        if auth.current_user(request) is None:
+            abort(403)
 
 
 @app.errorhandler(401)
