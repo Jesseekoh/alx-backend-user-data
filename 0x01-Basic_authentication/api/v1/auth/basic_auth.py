@@ -5,6 +5,8 @@ import binascii
 import re
 from typing import Tuple, TypeVar
 
+from models.user import User
+
 from .auth import Auth
 
 
