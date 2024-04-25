@@ -1,7 +1,7 @@
+#!/usr/bin/env python3
+
 """DB module
 """
-from typing import TypeVar
-
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -32,14 +32,9 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """adds user to db
-
-        Args:
-            email (str): user email
-            hashed_password (str): user hashed password
-        """
+        if not email or not hashed_password:
+            return
         user = User(email=email, hashed_password=hashed_password)
-
         session = self._session
         session.add(user)
         session.commit()
